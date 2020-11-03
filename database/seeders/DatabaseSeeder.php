@@ -12,7 +12,9 @@ class DatabaseSeeder extends Seeder{
      */
     public function run(){
         $this->call([
-            CalonPegawaiSeeder::class,
+            // CalonPegawaiSeeder::class,
+            GuruSeeder::class,
+            MapelSeeder::class,
         ]);
     }
 }

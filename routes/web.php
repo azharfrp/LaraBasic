@@ -63,3 +63,7 @@ Route::group(['prefix' => 'crud'], function() {
     // Delete
     Route::get('delete_eloquent/{id}', [GampanganController::class, 'delete_eloquent'])->name('crud.delete.eloquent');
 });
+
+Route::group(['prefix' => 'relasi'], function() {
+    Route::get('1to1', [GampanganController::class, 'onetoone'])->name('relasi.1to1');
+});

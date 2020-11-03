@@ -24,14 +24,17 @@
                     <li class="{{ request()->routeIs('crud.lits.pagination') ? 'nav-item active' : 'nav-item' }}">
                         <a class="{{ request()->routeIs('crud.lits.pagination') ? 'nav-link active' : 'nav-link' }}" href="{{ route('crud.lits.pagination') }}">Pagination</a>
                     </li>
+                    <li class="{{ request()->routeIs('relasi.1to1') ? 'nav-item active' : 'nav-item' }}">
+                        <a class="{{ request()->routeIs('relasi.1to1') ? 'nav-link active' : 'nav-link' }}" href="{{ route('relasi.1to1') }}">Relasi One to One</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
     <!-- Ini adalah bagian konten -->
-    <main role="main">
+    <section>
         @yield('content')
-    </main>
+    </section>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

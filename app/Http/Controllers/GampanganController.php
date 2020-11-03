@@ -4,30 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-// Facades milik Query Builder
+// Facades Laravel
 use Illuminate\Support\Facades\DB;
 
-// Model Eloquent milik GampanganModel
+// Model
+use App\Models\GuruModel;
+use App\Models\MapelModel;
 use App\Models\GampanganModel;
 
 class GampanganController extends Controller{
-    // Simple Redirect
-    public function index_r(){
-        return redirect()->route('crud.list.global')->with('alert', 'alert alert-warning')->with('message', 'Pembahasan kita ada di Route ini.');
-    }
 
-public function list_pagination(Request $request){
-    $nama = $request->nama;
-    $umur = $request->umur;
-    $lq = DB::table('calonpegawai')->where([
-        ['nama', 'like', "%".$nama."%"],
-        // Kemungkinan lain disimpan disini
-    ])->orWhere([
-        ['umur', 'like', "%".$umur."%"],
-        // Kemungkinan lain disimpan disini
-    ])->paginate('10');
-    return view('gampanganfolder.list-pagination')->with(compact(array( 'lq' )));
-}
+    public function list_pagination(Request $request){
+        $nama = $request->nama;
+        $umur = $request->umur;
+        $lq = DB::table('calonpegawai')->where([
+            ['nama', 'like', "%".$nama."%"],
+            // Kemungkinan lain disimpan disini
+        ])->orWhere([
+            ['umur', 'like', "%".$umur."%"],
+            // Kemungkinan lain disimpan disini
+        ])->paginate('10');
+        return view('gampanganfolder.list-pagination')->with(compact(array( 'lq' )));
+    }
 
     // View List Global
     public function list_global(){
@@ -152,5 +150,11 @@ public function list_pagination(Request $request){
     public function delete_eloquent($id){
         GampanganModel::find($id)->delete();
         return redirect()->route('crud.list.global')->with('alert', 'alert alert-info')->with('message', 'Data berhasil dihapus menggunakan Eloquent.');
+    }
+
+    // Relasi database Eloquent - One to One
+    public function onetoone(){
+        $el = MapelModel::all();
+        return view('gampanganfolder.list-relasi-1on1')->with(compact(array( 'el' )));
     }
 }
