@@ -5,26 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class GuruModel extends Model{
+class AnggotaHobiModel extends Model{
     use HasFactory;
 
     /*
     || Informasi table
     */
-    protected $table = 'guru';
-    protected $primaryKey = 'guru_id';
+    protected $table = 'anggota_hobi';
+    protected $primaryKey = 'anggota_hobi_id';
 
     /*
     || Table fillable untuk CRUD
     */
     protected $fillable = [
-        'guru_nama',
+        'anggota_id', 'hobi_id',
     ];
-
-    /*
-    || Relasi One to One
-    */
-    public function mapelHasOne(){
-    	return $this->hasOne('App\Models\MapelModel', 'guru_id');
-    }
 }

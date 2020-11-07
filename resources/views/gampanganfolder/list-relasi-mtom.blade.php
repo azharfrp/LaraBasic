@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'List One to Many')
+@section('title', 'List Many to Many')
 @section('content')
 <main role="main">
     <div class="container my-3">
@@ -13,8 +13,8 @@
                         <thead>
                             <tr>
                                 <th class="text-center" width="5%">No.</th>
-                                <th width="25%">Kelas</th>
-                                <th>Nama Siswa</th>
+                                <th>Nama Anggota</th>
+                                <th>Hobi</th>
                                 <th width="5%">Jumlah</th>
                             </tr>
                         </thead>
@@ -22,13 +22,15 @@
                         @foreach($el AS $eloquent)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                <td>{{ $eloquent->kelas_nama }}</td>
-                                <td>
-                                    @foreach( $eloquent->siswaHasMany AS $siswas )
-                                        {{ $siswas->siswa_nama . ',' }}
-                                    @endforeach
-                                </td>
-                                <td class="text-center">{{ $eloquent->siswaHasMany->count() }}</td>
+                                <td>{{ $eloquent->anggota_nama }}</td>
+                                    <td>
+                                        <ol>
+                                            @foreach( $eloquent->hobiBelongsToMany AS $hobis )
+                                                <li>{{ $hobis->hobi_nama }}</li>
+                                            @endforeach
+                                        </ol>
+                                    </td>
+                                <td class="text-center">{{ $eloquent->hobiBelongsToMany->count() }}</td>
                             </tr>
                         @endforeach
                         </tbody>

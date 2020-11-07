@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 // Facades Laravel
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 // Model
-use App\Models\GuruModel;
+use App\Models\KelasModel;
 use App\Models\MapelModel;
+use App\Models\AnggotaModel;
 use App\Models\GampanganModel;
 
 class GampanganController extends Controller{
 
+    // View List Pagination
     public function list_pagination(Request $request){
         $nama = $request->nama;
         $umur = $request->umur;
@@ -156,5 +158,31 @@ class GampanganController extends Controller{
     public function onetoone(){
         $el = MapelModel::all();
         return view('gampanganfolder.list-relasi-1on1')->with(compact(array( 'el' )));
+    }
+
+    // Relasi database Eloquent - One to Many
+    public function onetomany(){
+        $el = KelasModel::all();
+        return view('gampanganfolder.list-relasi-1onm')->with(compact(array( 'el' )));
+    }
+
+    // Relasi database Eloquent - Many to Many
+    public function manytomany(){
+        $el = AnggotaModel::get();
+        return view('gampanganfolder.list-relasi-mtom')->with(compact(array( 'el' )));
+    }
+
+    // View Kirim WA
+    public function wa_view(){
+        return view('gampanganfolder.wa');
+    }
+
+    // Kirim WA
+    public function wa_store(Request $request){
+        $response = Http::get('https://endpoint-api-wa.gampangan.com/send.php', [
+            'wa_no'     => $request->phone,
+            'wa_text'   => $request->message,
+        ]);
+        return $response->status();
     }
 }

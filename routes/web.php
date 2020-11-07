@@ -27,7 +27,7 @@ Route::group(['prefix' => 'pagination'], function() {
 // CRUD
 Route::group(['prefix' => 'crud'], function() {
     // List Global
-    Route::get('list', [GampanganController::class, 'list_global'])->name('crud.list.global');
+    Route::get('/', [GampanganController::class, 'list_global'])->name('crud.list.global');
 
     /*
     ----------------------------
@@ -64,6 +64,15 @@ Route::group(['prefix' => 'crud'], function() {
     Route::get('delete_eloquent/{id}', [GampanganController::class, 'delete_eloquent'])->name('crud.delete.eloquent');
 });
 
+// Relasi Database
 Route::group(['prefix' => 'relasi'], function() {
     Route::get('1to1', [GampanganController::class, 'onetoone'])->name('relasi.1to1');
+    Route::get('1tom', [GampanganController::class, 'onetomany'])->name('relasi.1tom');
+    Route::get('mtom', [GampanganController::class, 'manytomany'])->name('relasi.mtom');
+});
+
+// Whatsapp Gateway - WA-GW
+Route::group(['prefix' => 'wa'], function() {
+    Route::get('/', [GampanganController::class, 'wa_view'])->name('wa');
+    Route::post('/', [GampanganController::class, 'wa_store'])->name('wa.post');
 });

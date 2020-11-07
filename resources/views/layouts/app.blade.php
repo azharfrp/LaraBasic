@@ -27,6 +27,12 @@
                     <li class="{{ request()->routeIs('relasi.1to1') ? 'nav-item active' : 'nav-item' }}">
                         <a class="{{ request()->routeIs('relasi.1to1') ? 'nav-link active' : 'nav-link' }}" href="{{ route('relasi.1to1') }}">Relasi One to One</a>
                     </li>
+                    <li class="{{ request()->routeIs('relasi.1tom') ? 'nav-item active' : 'nav-item' }}">
+                        <a class="{{ request()->routeIs('relasi.1tom') ? 'nav-link active' : 'nav-link' }}" href="{{ route('relasi.1tom') }}">Relasi One to Many</a>
+                    </li>
+                    <li class="{{ request()->routeIs('relasi.mtom') ? 'nav-item active' : 'nav-item' }}">
+                        <a class="{{ request()->routeIs('relasi.mtom') ? 'nav-link active' : 'nav-link' }}" href="{{ route('relasi.mtom') }}">Relasi Many to Many</a>
+                    </li>
                 </ul>
             </div>
         </div>

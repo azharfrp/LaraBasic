@@ -5,26 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MapelModel extends Model{
+class HobiModel extends Model{
     use HasFactory;
 
     /*
     || Informasi table
     */
-    protected $table = 'mapel';
-    protected $primaryKey = 'mapel_id';
+    protected $table = 'hobi';
+    protected $primaryKey = 'hobi_id';
 
     /*
     || Table fillable untuk CRUD
     */
     protected $fillable = [
-        'guru_id', 'mapel_nama',
+        'hobi_nama',
     ];
 
     /*
-    || GuruModel merupakan bagian dari MapelModel
+    || Relasi Many to Many
     */
-    public function guruBelongsTo(){
-    	return $this->belongsTo('App\Models\GuruModel', 'guru_id');
+    public function anggotaBelongsToMany(){
+    	return $this->belongsToMany('App\Models\AnggotaModel');
     }
 }
